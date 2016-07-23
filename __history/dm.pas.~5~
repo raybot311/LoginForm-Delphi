@@ -1,0 +1,33 @@
+unit dm;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.Win.ADODB, Data.DB;
+
+type
+  TDataModule1 = class(TDataModule)
+    ADOConnection1: TADOConnection;
+    ADOTable1: TADOTable;
+    DataSource1: TDataSource;
+    ADOQuery1: TADOQuery;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function Authenticateuser(AUsername,APassword: string): boolean;
+  end;
+
+var
+  DataModule1: TDataModule1;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+ function TDataModule1.Authenticateuser(AUsername: string; APassword: string): boolean;
+  begin
+
+ end;
+end.

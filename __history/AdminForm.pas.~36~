@@ -1,0 +1,88 @@
+unit AdminForm;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.ExtCtrls, Vcl.Grids,
+  Vcl.DBGrids, Vcl.Menus, Vcl.StdCtrls;
+
+type
+  TfrmAdmin = class(TForm)
+    DBGrid1: TDBGrid;
+    Panel1: TPanel;
+    MainMenu1: TMainMenu;
+    File1: TMenuItem;
+    Connect1: TMenuItem;
+    Disconnect1: TMenuItem;
+    Btnadduser: TButton;
+    Btndeleteuser: TButton;
+    Btnedituser: TButton;
+    Exit1: TMenuItem;
+    procedure FormCreate(Sender: TObject);
+    procedure Connect1Click(Sender: TObject);
+    procedure BtnadduserClick(Sender: TObject);
+    procedure Disconnect1Click(Sender: TObject);
+    procedure BtndeleteuserClick(Sender: TObject);
+    procedure BtnedituserClick(Sender: TObject);
+    procedure Exit1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmAdmin: TfrmAdmin;
+
+implementation
+
+{$R *.dfm}
+uses dm,dbeditForm;
+
+procedure TfrmAdmin.BtnadduserClick(Sender: TObject);
+begin
+  DataModule1.ADOTable1.Insert;
+  frmEdit := TfrmEdit.Create(Owner);
+  frmEdit.ShowModal;
+
+end;
+
+procedure TfrmAdmin.BtndeleteuserClick(Sender: TObject);
+begin
+  //frmEdit := TfrmEdit.Create(Owner);
+  //frmEdit.ShowModal;
+  if Datamodule1.ADOTable1.RecordCount > 0 then
+    if MessageDlg('Delete selected user, are you sure', mtConfirmation, [mbYes, mbNo],0,mbYes) = mrYes then
+      Datamodule1.ADOTable1.Delete;
+end;
+
+procedure TfrmAdmin.BtnedituserClick(Sender: TObject);
+begin
+  DataModule1.ADOTable1.Edit;
+  frmEdit := TfrmEdit.Create(Owner);
+  frmEdit.ShowModal;
+end;
+
+procedure TfrmAdmin.Connect1Click(Sender: TObject);
+begin
+  DataModule1.ADOConnection1.Connected := true;
+  DataModule1.ADOTable1.Active := true;
+end;
+procedure TfrmAdmin.Disconnect1Click(Sender: TObject);
+begin
+  DataModule1.ADOConnection1.Connected := false;
+end;
+
+
+procedure TfrmAdmin.Exit1Click(Sender: TObject);
+begin
+   Close;
+end;
+
+procedure TfrmAdmin.FormCreate(Sender: TObject);
+begin
+ DataModule1.ADOConnection1.Connected := true;
+end;
+
+end.

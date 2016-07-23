@@ -1,0 +1,19 @@
+program LoginFormProject;
+
+uses
+  Vcl.Forms,
+  dm in 'dm.pas' {DataModule1: TDataModule},
+  fmEditUser in 'fmEditUser.pas' {frmEdit},
+  fmLogin in 'fmLogin.pas' {frmLogin},
+  fmUser in 'fmUser.pas' {frmUser},
+  fmUserAdmin in 'fmUserAdmin.pas' {frmAdmin};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TfrmLogin, frmLogin);
+  Application.Run;
+end.

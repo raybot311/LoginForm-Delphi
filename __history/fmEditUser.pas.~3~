@@ -1,0 +1,57 @@
+unit fmEditUser;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask,
+  Vcl.DBCtrls;
+
+type
+  TfrmEdit = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+    DBEdit3: TDBEdit;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmEdit: TfrmEdit;
+
+implementation
+
+{$R *.dfm}
+uses dm,AdminForm,Db;
+
+procedure TfrmEdit.BitBtn1Click(Sender: TObject);
+begin
+  if DataModule1.DataSource1.DataSet.State in [dsEdit,dsInsert] then
+  begin
+    try
+      DataModule1.ADOTable1.Post;
+    except
+      on e: exception do
+      begin
+        DataModule1.ADOTable1.Cancel;
+        raise Exception.Create('An error has occurred: User exists already.');
+      end;
+    end;
+  end;
+end;
+
+procedure TfrmEdit.BitBtn2Click(Sender: TObject);
+begin
+  DataModule1.ADOTable1.Cancel;
+end;
+
+end.

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/07/01 17:23:07.000.039,=C:\Users\ray\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2016/07/01 17:23:36.000.590,=C:\Users\ray\Documents\Embarcadero\Studio\Projects\BetterLoginForm\dm.pas</Transaction>
+    <Transaction>2016/07/01 17:23:37.000.044,=C:\Users\ray\Documents\Embarcadero\Studio\Projects\BetterLoginForm\fmEditUser.pas</Transaction>
+    <Transaction>2016/07/01 17:23:37.000.063,=C:\Users\ray\Documents\Embarcadero\Studio\Projects\BetterLoginForm\fmLogin.pas</Transaction>
+    <Transaction>2016/07/01 17:23:37.000.100,=C:\Users\ray\Documents\Embarcadero\Studio\Projects\BetterLoginForm\fmUserAdmin.pas</Transaction>
+    <Transaction>2016/07/01 17:23:37.000.082,=C:\Users\ray\Documents\Embarcadero\Studio\Projects\BetterLoginForm\fmUser.pas</Transaction>
+    <Transaction>2016/07/01 17:25:18.000.689,C:\Users\ray\Documents\Embarcadero\Studio\Projects\BetterLoginForm\LoginFormProject.dproj=C:\Users\ray\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

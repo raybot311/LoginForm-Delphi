@@ -1,0 +1,89 @@
+unit fmLogin;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, VCLTee.TeePenDlg,
+  VCLTee.TeeEdiGrad, VCLTee.TeCanvas, Vcl.DBCtrls;
+
+type
+  TfrmLogin = class(TForm)
+    edusername: TEdit;
+    edpassword: TEdit;
+    BtnLogin: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    CheckBox1: TCheckBox;
+    procedure BtnLoginClick(Sender: TObject);
+    procedure CleanLoginForm;
+    procedure CheckBox1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmLogin: TfrmLogin;
+  sqlstr : string;
+
+implementation
+
+{$R *.dfm}
+uses dm,fmUserAdmin,fmUser,DB;
+procedure TfrmLogin.BtnLoginClick(Sender: TObject);
+begin
+    DataModule1.ADOConnection1.Connected := true;
+    DataModule1.tLogin.active := true;
+    sqlstr = 'SELECT '+ quotedstr(edusername.Text)
+
+    DataModule1.
+    if DataModule1.tLogin.Locate('username',edusername.Text,[loCaseInsensitive])  then
+    begin
+      if DataModule1.tLogin.FieldByName('password').AsString = edpassword.Text  then
+        //showmessage('success' );
+        if DataModule1.tLogin.FieldByName('permission').AsBoolean = true then
+        begin
+          frmAdmin := TfrmAdmin.Create(Owner);
+          try
+            frmLogin.Hide;
+            try
+              frmAdmin.ShowModal;
+            finally
+              frmLogin.Show;
+            end;
+          finally
+            frmAdmin.Destroy;
+          end;
+        end
+        else
+        begin
+          frmUser := TfrmUser.Create(Owner);
+          frmLogin.Hide;
+          try
+            frmUser.ShowModal;
+          finally
+            frmUser.Free;
+            frmLogin.Show;
+          end;
+        end;
+        CleanLoginForm;
+    end
+    else
+      showmessage('Login failure');
+
+end;
+
+procedure TfrmLogin.CheckBox1Click(Sender: TObject);
+begin
+  edpassword.PasswordChar := #0;
+end;
+
+procedure TfrmLogin.CleanLoginForm;
+begin
+  edusername.Text := '';
+  edpassword.Text := '';
+end;
+
+end.

@@ -1,0 +1,83 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 300
+  ClientWidth = 635
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 88
+    Top = 48
+    Width = 22
+    Height = 13
+    Caption = 'User'
+  end
+  object Label2: TLabel
+    Left = 88
+    Top = 75
+    Width = 46
+    Height = 13
+    Caption = 'Password'
+  end
+  object Label3: TLabel
+    Left = 88
+    Top = 99
+    Width = 50
+    Height = 13
+    Caption = 'Permission'
+  end
+  object DBText1: TDBText
+    Left = 160
+    Top = 99
+    Width = 65
+    Height = 17
+  end
+  object DBEdit1: TDBEdit
+    Left = 160
+    Top = 45
+    Width = 121
+    Height = 21
+    TabOrder = 0
+  end
+  object DBEdit2: TDBEdit
+    Left = 160
+    Top = 72
+    Width = 121
+    Height = 21
+    TabOrder = 1
+  end
+  object BitBtn1: TBitBtn
+    Left = 88
+    Top = 152
+    Width = 75
+    Height = 25
+    Kind = bkOK
+    NumGlyphs = 2
+    TabOrder = 2
+    OnClick = BitBtn1Click
+  end
+  object BitBtn2: TBitBtn
+    Left = 190
+    Top = 152
+    Width = 75
+    Height = 25
+    Caption = 'BitBtn1'
+    TabOrder = 3
+  end
+  object BitBtn3: TBitBtn
+    Left = 296
+    Top = 152
+    Width = 75
+    Height = 25
+    Caption = 'BitBtn1'
+    TabOrder = 4
+  end
+end

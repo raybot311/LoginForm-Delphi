@@ -1,0 +1,41 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 316
+  Width = 428
+  object ADOConnection1: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security In' +
+      'fo=False;Initial Catalog=userpwd;Data Source=IMAGINE-PC\SQLEXPRE' +
+      'SS'
+    Provider = 'SQLOLEDB.1'
+    Left = 40
+    Top = 24
+  end
+  object ADOTable1: TADOTable
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    TableName = 'LoginTable'
+    Left = 136
+    Top = 240
+  end
+  object DataSource1: TDataSource
+    DataSet = ADOTable1
+    Left = 288
+    Top = 240
+  end
+  object ADOQuery1: TADOQuery
+    Connection = ADOConnection1
+    Parameters = <>
+    Left = 136
+    Top = 160
+  end
+  object TADOQuery
+    Connection = ADOConnection1
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT * FROM LoginTable')
+    Left = 232
+    Top = 160
+  end
+end

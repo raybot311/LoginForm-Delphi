@@ -1,0 +1,55 @@
+unit LoginForm;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TfrmLogin = class(TForm)
+    edusername: TEdit;
+    edpassword: TEdit;
+    Button1: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmLogin: TfrmLogin;
+
+implementation
+
+{$R *.dfm}
+uses dm,DB,AdminForm;
+procedure TfrmLogin.Button1Click(Sender: TObject);
+begin
+    DataModule1.ADOConnection1.Connected := true;
+    DataModule1.ADOTable1.active := true;
+    //DataModule1.ADOQuery1.SQL.Text  := 'SELECT * FROM LoginTable Where username = '+quotedstr(edusername.Text);
+    //DataModule1.ADOQuery1.open;
+
+    if DataModule1.ADOTable1.Locate('username',edusername.Text,[loCaseInsensitive])  then
+    begin
+      if DataModule1.ADOTable1.FieldByName('password').AsString = edpassword.Text  then
+        showmessage('success' );
+        if DataModule1.ADOTable1.FieldByName('permission').IsBlob = true then
+            frmAdmin := TfrmAdmin.Create(Owner);
+            frmLogin.Hide;
+            try
+            frmAdmin.ShowModal;
+            finally
+              frmAdmin.Free;
+            end;
+    end
+    else
+      showmessage('failure');
+
+end;
+
+end.
